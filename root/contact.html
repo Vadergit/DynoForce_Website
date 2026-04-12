@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kontakt — DynoForce</title>
-  <meta name="description" content="Kontakt zu DynoForce für Fragen zu DynoGrip, DynoPull, App-Zugang, Verfügbarkeit und Zusammenarbeit." />
+  <meta name="description" content="Kontakt zu DynoForce für Fragen zu DynoGrip, DynoPull, App, Verfügbarkeit und Zusammenarbeit." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="shortcut icon" href="favicon.png" type="image/png" />
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container nav">
@@ -19,32 +18,32 @@
       <span>DynoForce</span>
     </a>
     <nav class="nav-links" aria-label="Hauptnavigation">
-      <a href="index.html" >Home</a>
       <a href="produkte.html">Produkte</a>
-      <a href="app.html" >App</a>
-      <a href="dynogrip.html" >DynoGrip</a>
-      <a href="dynopull.html" >DynoPull</a>
-      <a href="https://dynoforce-wiki.web.app/#uebersicht" target="_blank" rel="noreferrer noopener" >Wiki</a>
-      <a href="about.html" >About</a>
+      <a href="app.html">App</a>
+      <a href="about.html">About</a>
       <a href="contact.html" class="active">Kontakt</a>
     </nav>
   </div>
 </header>
-
 
 <main>
 
 <section class="hero container">
   <div class="eyebrow">Kontakt</div>
   <h1>Fragen, Interesse oder Zusammenarbeit?</h1>
-  <p class="lead">Du möchtest mehr erfahren, ein Modul ausprobieren oder über eine Zusammenarbeit sprechen? Dann melde dich direkt.</p>
+  <p class="lead">
+    Du möchtest mehr über DynoGrip, DynoPull oder die App erfahren, ein Modul ausprobieren oder über eine
+    Zusammenarbeit sprechen? Dann melde dich direkt.
+  </p>
 </section>
 
 <section class="section container">
   <div class="contact-grid">
     <div class="contact-card">
       <h3>Direkter Kontakt</h3>
-      <p class="contact-copy">Für Produktinteresse, Rückfragen oder Projektanfragen kannst du direkt Kontakt aufnehmen.</p>
+      <p class="contact-copy">
+        Für Produktinteresse, Rückfragen, Projektanfragen oder Zusammenarbeit kannst du direkt Kontakt aufnehmen.
+      </p>
       <div class="contact-list">
         <a href="mailto:info@dynoforce.ch">
           <span class="contact-label">E-Mail</span>
@@ -55,14 +54,17 @@
           dynoforce.ch
         </a>
         <div>
-          <span class="contact-label">Status</span>
-          Anfragen zu Modulen, App-Zugang und Verfügbarkeit möglich
+          <span class="contact-label">Möglich für</span>
+          Produktanfragen, App-Fragen, Verfügbarkeit und Zusammenarbeit
         </div>
       </div>
     </div>
+
     <div class="contact-card">
-      <h3>Kurze Anfrage senden</h3>
-      <p class="contact-copy">Das Formular öffnet deine Mail-App mit einer vorausgefüllten Nachricht, damit du deine Anfrage schnell senden kannst.</p>
+      <h3>Kontaktformular</h3>
+      <p class="contact-copy">
+        Not ready yet
+      </p>
       <form class="form" id="contactForm">
         <div class="field">
           <label class="label" for="name">Name</label>
@@ -73,18 +75,46 @@
           <input id="email" name="email" type="email" placeholder="deine@email.ch" required />
         </div>
         <div class="field">
-          <label class="label" for="message">Nachricht</label>
-          <textarea id="message" name="message" placeholder="Worum geht es?" required></textarea>
+          <label class="label" for="subject">Betreff</label>
+          <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required />
         </div>
-        <button class="btn btn-primary" type="submit">Anfrage vorbereiten</button>
-        <div class="copy">Es werden keine Daten auf einem Server gespeichert. Der Button erstellt eine E-Mail-Vorlage auf deinem Gerät.</div>
+        <div class="field">
+          <label class="label" for="message">Nachricht</label>
+          <textarea id="message" name="message" placeholder="Beschreibe dein Anliegen kurz" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">E-Mail vorbereiten</button>
+        <div class="copy">
+          Die Funktion zum Senden des Formulares ist momentan nicht implemnetiert. 
+        </div>
       </form>
     </div>
   </div>
 </section>
 
-</main>
+<section class="section container">
+  <div class="grid-2">
+    <div class="card">
+      <div class="eyebrow">Hinweis</div>
+      <h2>Einfach und direkt statt kompliziertem Ticketsystem.</h2>
+      <p class="body-copy">
+        Für ein frühes und persönliches Projekt wie DynoForce ist direkter Kontakt oft der sinnvollste Weg.
+        Fragen zu Geräten, App, Training, Verfügbarkeit oder möglichen Anwendungen können so schnell und unkompliziert
+        geklärt werden.
+      </p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Technisch</div>
+      <h2>GitHub Pages und Formulare.</h2>
+      <p class="body-copy">
+        GitHub Pages hostet statische HTML-, CSS- und JavaScript-Dateien, unterstützt aber keine serverseitigen
+        Sprachen wie PHP, Ruby oder Python. Ein klassisches Kontaktformular mit eigener Verarbeitung im Hintergrund
+        funktioniert deshalb dort nicht ohne zusätzlichen externen Dienst oder eigenes Backend.
+      </p>
+    </div>
+  </div>
+</section>
 
+</main>
 
 <footer class="site-footer container">
   <div class="footer-clean">
@@ -116,7 +146,28 @@
   </div>
 </footer>
 
+<script>
+  const contactForm = document.getElementById('contactForm');
 
-<script src="script.js"></script>
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const mailSubject = encodeURIComponent(`[DynoForce] ${subject}`);
+      const mailBody = encodeURIComponent(
+        `Name: ${name}\n` +
+        `E-Mail: ${email}\n\n` +
+        `${message}`
+      );
+
+      window.location.href = `mailto:info@dynoforce.ch?subject=${mailSubject}&body=${mailBody}`;
+    });
+  }
+</script>
 </body>
 </html>
