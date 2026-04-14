@@ -426,3 +426,57 @@ h3,
 .app-hero-phone-strip {
   margin-top: 52px;
 }
+
+.app-store-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0 10px;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.store-badge:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.store-badge img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+.web-app-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .app-store-links {
+    gap: 10px;
+  }
+
+  .store-badge img {
+    height: 46px;
+  }
+
+  .web-app-link {
+    min-height: 46px;
+    width: 100%;
+  }
+}
