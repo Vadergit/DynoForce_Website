@@ -37,9 +37,44 @@
     Backups, Web-Dashboard und Ranglisten erweitert werden.
   </p>
   <div class="hero-actions app-hero-actions">
-    <a class="btn btn-primary" href="https://apps.apple.com/ch/app/dynoforce/id6759002748" target="_blank" rel="noreferrer noopener">Im App Store</a>
-    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.dynoforce.app" target="_blank" rel="noreferrer noopener">Bei Google Play</a>
-    <a class="btn btn-secondary" href="https://dynoforce.web.app" target="_blank" rel="noreferrer noopener">Web App öffnen</a>
+ <div class="app-store-links" aria-label="Download und App-Zugänge">
+  <a
+    class="store-badge"
+    href="https://apps.apple.com/ch/app/dynoforce/id6759002748"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="DynoForce im Apple App Store öffnen"
+  >
+    <img
+      src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+      alt="Download on the App Store"
+      height="52"
+    />
+  </a>
+
+  <a
+    class="store-badge"
+    href="https://play.google.com/store/apps/details?id=com.dynoforce.app"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="DynoForce bei Google Play öffnen"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+      alt="Get it on Google Play"
+      height="52"
+    />
+  </a>
+
+  <a
+    class="web-app-link"
+    href="https://dynoforce.web.app"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Web App öffnen
+  </a>
+</div>
   </div>
   <div class="hero-phone-strip app-hero-phone-strip">
     <div class="grid-4">
@@ -59,7 +94,10 @@
       wiederholbare Abläufe und geführten Einheiten mit klaren Zielvorgaben.
     </p>
   </div>
-  <div class="mosaic-2">
+  <!-- *** ANGEPASSTER CONTAINER FÜR DAS 2x2 GRID *** -->
+  <div class="grid-2"> 
+    
+    <!-- 1. Live-Feedback -->
     <div class="visual-card image-fit">
       <img class="app-core-screen" src="images/app-live.png" alt="Live-Ansicht mit aktueller Kraft, Peak und Kraftgraph" />
       <div class="copy-wrap">
@@ -67,20 +105,31 @@
         <p class="caption">Aktuelle Kraft, Peak pro Versuch und Kraftverlauf werden direkt sichtbar. Die Live-Ansicht dient vor allem der unmittelbaren Rückmeldung bei Nutzung, Tests und einzelnen Versuchen.</p>
       </div>
     </div>
-    <div class="grid-2" style="grid-template-columns:1fr">
-      <div class="visual-card image-fit">
-        <img class="app-core-screen" src="images/app-training.png" alt="Trainingsbereich mit Auswahl von Trainingsmodi wie Ausdauer, Intervall, Integral und Max Test" />
-        <div class="copy-wrap">
-          <h3>Trainingsbereich</h3>
-          <p class="caption">Ausdauer, Intervall, Integral, Wiederholungen und Max-Test helfen dabei, Training gezielt und strukturiert aufzubauen. Für das eigentliche Training steht ein eigener Bereich mit wiederholbaren Abläufen bereit.</p>
-        </div>
+
+    <!-- 2. Trainingsbereich -->
+    <div class="visual-card image-fit">
+      <img class="app-core-screen" src="images/app-training.png" alt="Trainingsbereich mit Auswahl von Trainingsmodi wie Ausdauer, Intervall, Integral und Max Test" />
+      <div class="copy-wrap">
+        <h3>Trainingsbereich</h3>
+        <p class="caption">Ausdauer, Intervall, Integral, Wiederholungen und Max-Test helfen dabei, Training gezielt und strukturiert aufzubauen. Für das eigentliche Training steht ein eigener Bereich mit wiederholbaren Abläufen bereit.</p>
       </div>
-      <div class="visual-card image-fit">
-        <img src="images/app-interval.png" alt="Intervallscreen mit Countdown, Sets und Zielkraft" />
-        <div class="copy-wrap">
-          <h3>Geführte Einheiten</h3>
-          <p class="caption">Klare Zielvorgaben, Countdown, Sets und Zielkraft machen auch längere Einheiten gut steuerbar und nachvollziehbar.</p>
-        </div>
+    </div>
+
+    <!-- 3. Geführte Einheiten -->
+    <div class="visual-card image-fit">
+      <img src="images/app-interval.png" alt="Intervallscreen mit Countdown, Sets und Zielkraft" />
+      <div class="copy-wrap">
+        <h3>Geführte Einheiten</h3>
+        <p class="caption">Klare Zielvorgaben, Countdown, Sets und Zielkraft machen auch längere Einheiten gut steuerbar und nachvollziehbar.</p>
+      </div>
+    </div>
+
+    <!-- 4. NEU: Auswertung / Status Screen -->
+    <div class="visual-card image-fit">
+      <img class="app-core-screen" src="images/AuswetungMaxTest.png" alt="Status Screen nach dem Training, der Key Points wie Bestes Ergebnis, Durchschnitt und Max RFD darstellt" />
+      <div class="copy-wrap">
+        <h3>Umfassende Auswertung</h3>
+        <p class="caption">Nach dem Training werden alle Key Points (bestes Ergebnis, Durchschnitt, Max RFD etc.) zentral auf einem Status-Screen dargestellt, um den Fortschritt präzise zu analysieren und zu verfolgen.</p>
       </div>
     </div>
   </div>
@@ -195,8 +244,8 @@
       </div>
     </div>
   </div>
-</footer>
+</footer >
 
 <script src="script.js"></script>
-</body>
-</html>
+</body >
+</html >
