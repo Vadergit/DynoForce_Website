@@ -204,6 +204,20 @@
         node.setAttribute("placeholder", value);
       }
     });
+
+    document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+      const attrMapping = node.getAttribute("data-i18n-attr");
+      if (!attrMapping) return;
+
+      attrMapping.split(";").forEach((pair) => {
+        const [attr, key] = pair.split(":").map((item) => item?.trim());
+        if (!attr || !key) return;
+        const value = t(lang, key);
+        if (value) {
+          node.setAttribute(attr, value);
+        }
+      });
+    });
   }
 
   function createLanguageSelector(activeLang) {
