@@ -220,6 +220,130 @@
     });
   }
 
+  const TRANSLATABLE_ATTRS = ["alt", "title", "aria-label", "placeholder"];
+  const translationCache = new Map();
+
+  function getCacheKey(lang, text) {
+    return `${lang}::${text}`;
+  }
+
+  async function translateText(text, lang) {
+    const normalized = text.trim();
+    if (!normalized || lang === DEFAULT_LANG) return normalized;
+
+    const cacheKey = getCacheKey(lang, normalized);
+    if (translationCache.has(cacheKey)) {
+      return translationCache.get(cacheKey);
+    }
+
+    const endpoint = "https://translate.googleapis.com/translate_a/single";
+    const params = new URLSearchParams({
+      client: "gtx",
+      sl: DEFAULT_LANG,
+      tl: lang,
+      dt: "t",
+      q: normalized
+    });
+
+    try {
+      const response = await fetch(`${endpoint}?${params.toString()}`);
+      if (!response.ok) throw new Error("translation failed");
+      const data = await response.json();
+      const translated = Array.isArray(data?.[0])
+        ? data[0].map((part) => part?.[0] || "").join("")
+        : normalized;
+      translationCache.set(cacheKey, translated || normalized);
+      return translated || normalized;
+    } catch (_) {
+      return normalized;
+    }
+  }
+
+  function collectTranslatableTextNodes() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node?.nodeValue) return NodeFilter.FILTER_REJECT;
+        const parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        if (parent.closest("[data-i18n], [data-i18n-placeholder], [data-i18n-attr], .lang-switcher")) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        const text = node.nodeValue.trim();
+        if (!text) return NodeFilter.FILTER_REJECT;
+        if (!/[A-Za-zÄÖÜäöüß]/.test(text)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const nodes = [];
+    let current;
+    while ((current = walker.nextNode())) {
+      const trimmed = current.nodeValue.trim();
+      if (!current.__originalText) current.__originalText = trimmed;
+      nodes.push(current);
+    }
+    return nodes;
+  }
+
+  function collectTranslatableAttributes() {
+    const items = [];
+    document.querySelectorAll("*").forEach((node) => {
+      if (node.closest("[data-i18n-attr], .lang-switcher")) return;
+
+      TRANSLATABLE_ATTRS.forEach((attr) => {
+        const value = node.getAttribute?.(attr);
+        if (!value || !/[A-Za-zÄÖÜäöüß]/.test(value)) return;
+        if (!node.__originalAttrs) node.__originalAttrs = {};
+        if (!node.__originalAttrs[attr]) node.__originalAttrs[attr] = value;
+        items.push({ node, attr, text: node.__originalAttrs[attr] });
+      });
+    });
+
+    const metaDescription = document.querySelector('meta[name="description"]:not([data-i18n-attr])');
+    if (metaDescription) {
+      const value = metaDescription.getAttribute("content");
+      if (value && /[A-Za-zÄÖÜäöüß]/.test(value)) {
+        if (!metaDescription.__originalAttrs) metaDescription.__originalAttrs = {};
+        if (!metaDescription.__originalAttrs.content) metaDescription.__originalAttrs.content = value;
+        items.push({ node: metaDescription, attr: "content", text: metaDescription.__originalAttrs.content });
+      }
+    }
+
+    return items;
+  }
+
+  async function applyAutoPageTranslation(lang) {
+    const textNodes = collectTranslatableTextNodes();
+    const attributes = collectTranslatableAttributes();
+
+    if (lang === DEFAULT_LANG) {
+      textNodes.forEach((node) => {
+        if (node.__originalText) node.nodeValue = node.__originalText;
+      });
+      attributes.forEach(({ node, attr }) => {
+        const original = node.__originalAttrs?.[attr];
+        if (original) node.setAttribute(attr, original);
+      });
+      return;
+    }
+
+    for (const node of textNodes) {
+      const translated = await translateText(node.__originalText, lang);
+      const current = node.nodeValue;
+      const leading = current.match(/^\s*/)?.[0] || "";
+      const trailing = current.match(/\s*$/)?.[0] || "";
+      node.nodeValue = `${leading}${translated}${trailing}`;
+    }
+
+    for (const { node, attr, text } of attributes) {
+      const translated = await translateText(text, lang);
+      node.setAttribute(attr, translated);
+    }
+  }
+
   function createLanguageSelector(activeLang) {
     const nav = document.querySelector(".nav");
     if (!nav) return;
@@ -255,6 +379,7 @@
       const lang = event.target.value;
       localStorage.setItem("dynoforce-lang", lang);
       applyTranslations(lang);
+      applyAutoPageTranslation(lang);
     });
 
     wrapper.appendChild(label);
@@ -265,6 +390,7 @@
   const lang = detectLanguage();
   createLanguageSelector(lang);
   applyTranslations(lang);
+  applyAutoPageTranslation(lang);
 
   const form = document.getElementById("contactForm");
   if (form) {
