@@ -480,3 +480,28 @@ h3,
     width: 100%;
   }
 }
+
+.lang-switcher{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+}
+.lang-label{
+  color:var(--muted);
+  font-size:.85rem;
+  font-weight:600;
+}
+.lang-select{
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:999px;
+  background:#fff;
+  color:var(--text);
+  padding:7px 12px;
+  font-size:.88rem;
+}
+@media (max-width:720px){
+  .lang-switcher{
+    margin-left:0;
+  }
+}

@@ -18,10 +18,10 @@
       <span>DynoForce</span>
     </a>
     <nav class="nav-links" aria-label="Hauptnavigation">
-      <a href="produkte.html">Produkte</a>
-      <a href="app.html">App</a>
-      <a href="about.html">About</a>
-      <a href="contact.html" class="active">Kontakt</a>
+      <a href="produkte.html" data-i18n="nav.products">Produkte</a>
+      <a href="app.html" data-i18n="nav.app">App</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="active" data-i18n="nav.contact">Kontakt</a>
     </nav>
   </div>
 </header>
@@ -29,7 +29,7 @@
 <main>
 
 <section class="hero container">
-  <div class="eyebrow">Kontakt</div>
+  <div class="eyebrow" data-i18n="nav.contact">Kontakt</div>
   <h1>Fragen, Interesse oder Zusammenarbeit?</h1>
   <p class="lead">
     Du möchtest mehr über DynoGrip, DynoPull oder die App erfahren, ein Modul ausprobieren oder über eine
@@ -67,22 +67,22 @@
       </p>
       <form class="form" id="contactForm">
         <div class="field">
-          <label class="label" for="name">Name</label>
+          <label class="label" for="name" data-i18n="contact.form.name">Name</label>
           <input id="name" name="name" type="text" placeholder="Dein Name" required />
         </div>
         <div class="field">
-          <label class="label" for="email">E-Mail</label>
+          <label class="label" for="email" data-i18n="contact.form.email">E-Mail</label>
           <input id="email" name="email" type="email" placeholder="deine@email.ch" required />
         </div>
         <div class="field">
-          <label class="label" for="subject">Betreff</label>
+          <label class="label" for="subject" data-i18n="contact.form.subject">Betreff</label>
           <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required />
         </div>
         <div class="field">
-          <label class="label" for="message">Nachricht</label>
+          <label class="label" for="message" data-i18n="contact.form.message">Nachricht</label>
           <textarea id="message" name="message" placeholder="Beschreibe dein Anliegen kurz" required></textarea>
         </div>
-        <button class="btn btn-primary" type="submit">E-Mail vorbereiten</button>
+        <button class="btn btn-primary" type="submit" data-i18n="contact.form.submit">Nachricht per E-Mail senden</button>
         <div class="copy">
           Die Funktion zum Senden des Formulares ist momentan nicht implemnetiert. 
         </div>
@@ -127,54 +127,33 @@
   <div class="footer-clean">
     <div>
       <div class="footer-title">DynoForce</div>
-      <div class="footer-note">Präzise Kraftmessung mit intelligenter Software für alle, die Training nachvollziehbar, strukturiert und messbar machen wollen.</div>
+      <div class="footer-note" data-i18n="footer.note">Präzise Kraftmessung mit intelligenter Software für alle, die Training nachvollziehbar, strukturiert und messbar machen wollen.</div>
     </div>
     <div>
-      <div class="footer-title">Plattform</div>
+      <div class="footer-title" data-i18n="footer.platform">Plattform</div>
       <div class="footer-list">
-        <a href="app.html">App</a>
+        <a href="app.html" data-i18n="nav.app">App</a>
         <a href="https://apps.apple.com/ch/app/dynoforce/id6759002748" target="_blank" rel="noreferrer noopener">App Store</a>
         <a href="https://play.google.com/store/apps/details?id=com.dynoforce.app" target="_blank" rel="noreferrer noopener">Google Play</a>
         <a href="https://dynoforce.web.app" target="_blank" rel="noreferrer noopener">Web App</a>
-        <a href="https://dynoforce-wiki.web.app/#uebersicht" target="_blank" rel="noreferrer noopener">Wiki & Ressourcen</a>
+        <a href="https://dynoforce-wiki.web.app/#uebersicht" target="_blank" rel="noreferrer noopener" data-i18n="footer.wiki">Wiki & Ressourcen</a>
       </div>
     </div>
     <div>
-      <div class="footer-title">Navigation</div>
+      <div class="footer-title" data-i18n="footer.navigation">Navigation</div>
       <div class="footer-list">
-        <a href="index.html">Home</a>
-        <a href="produkte.html">Produkte</a>
+        <a href="index.html" data-i18n="footer.home">Home</a>
+        <a href="produkte.html" data-i18n="nav.products">Produkte</a>
         <a href="dynogrip.html">DynoGrip</a>
         <a href="dynopull.html">DynoPull</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Kontakt</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script>
-  const contactForm = document.getElementById('contactForm');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      const mailSubject = encodeURIComponent(`[DynoForce] ${subject}`);
-      const mailBody = encodeURIComponent(
-        `Name: ${name}\n` +
-        `E-Mail: ${email}\n\n` +
-        `${message}`
-      );
-
-      window.location.href = `mailto:info@dynoforce.ch?subject=${mailSubject}&body=${mailBody}`;
-    });
-  }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
