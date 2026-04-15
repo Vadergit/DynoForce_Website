@@ -221,7 +221,35 @@
   }
 
   const TRANSLATABLE_ATTRS = ["alt", "title", "aria-label", "placeholder"];
+  const CACHE_STORAGE_KEY = "dynoforce-translation-cache-v2";
+  const MAX_CONCURRENT_TRANSLATIONS = 8;
   const translationCache = new Map();
+  let activeTranslationRun = 0;
+
+  function loadTranslationCache() {
+    try {
+      const raw = localStorage.getItem(CACHE_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") return;
+      Object.entries(parsed).forEach(([key, value]) => {
+        if (typeof value === "string") {
+          translationCache.set(key, value);
+        }
+      });
+    } catch (_) {
+      // ignore invalid cache payloads
+    }
+  }
+
+  function persistTranslationCache() {
+    try {
+      const payload = Object.fromEntries(translationCache.entries());
+      localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(payload));
+    } catch (_) {
+      // storage can fail in private mode, continue without persistence
+    }
+  }
 
   function getCacheKey(lang, text) {
     return `${lang}::${text}`;
@@ -239,7 +267,7 @@
     const endpoint = "https://translate.googleapis.com/translate_a/single";
     const params = new URLSearchParams({
       client: "gtx",
-      sl: DEFAULT_LANG,
+      sl: "auto",
       tl: lang,
       dt: "t",
       q: normalized
@@ -252,11 +280,34 @@
       const translated = Array.isArray(data?.[0])
         ? data[0].map((part) => part?.[0] || "").join("")
         : normalized;
-      translationCache.set(cacheKey, translated || normalized);
-      return translated || normalized;
+      const finalValue = translated || normalized;
+      translationCache.set(cacheKey, finalValue);
+      return finalValue;
     } catch (_) {
       return normalized;
     }
+  }
+
+  async function warmTranslationCache(texts, lang) {
+    const queue = [...new Set(texts.filter(Boolean))].filter((text) => {
+      const normalized = text.trim();
+      return normalized && !translationCache.has(getCacheKey(lang, normalized));
+    });
+
+    if (!queue.length) return;
+
+    const workers = Array.from({
+      length: Math.min(MAX_CONCURRENT_TRANSLATIONS, queue.length)
+    }, async () => {
+      while (queue.length) {
+        const currentText = queue.shift();
+        if (!currentText) continue;
+        await translateText(currentText, lang);
+      }
+    });
+
+    await Promise.all(workers);
+    persistTranslationCache();
   }
 
   function collectTranslatableTextNodes() {
@@ -316,8 +367,14 @@
   }
 
   async function applyAutoPageTranslation(lang) {
+    const runId = ++activeTranslationRun;
     const textNodes = collectTranslatableTextNodes();
     const attributes = collectTranslatableAttributes();
+    const titleElement = document.querySelector("title:not([data-i18n])");
+    const originalTitle = titleElement ? titleElement.textContent?.trim() : "";
+    if (titleElement && originalTitle && !titleElement.__originalText) {
+      titleElement.__originalText = originalTitle;
+    }
 
     if (lang === DEFAULT_LANG) {
       textNodes.forEach((node) => {
@@ -327,11 +384,23 @@
         const original = node.__originalAttrs?.[attr];
         if (original) node.setAttribute(attr, original);
       });
+      if (titleElement?.__originalText) {
+        titleElement.textContent = titleElement.__originalText;
+      }
       return;
     }
 
+    await warmTranslationCache([
+      ...textNodes.map((node) => node.__originalText),
+      ...attributes.map((item) => item.text),
+      titleElement?.__originalText || ""
+    ], lang);
+
+    if (runId !== activeTranslationRun) return;
+
     for (const node of textNodes) {
       const translated = await translateText(node.__originalText, lang);
+      if (runId !== activeTranslationRun) return;
       const current = node.nodeValue;
       const leading = current.match(/^\s*/)?.[0] || "";
       const trailing = current.match(/\s*$/)?.[0] || "";
@@ -340,7 +409,14 @@
 
     for (const { node, attr, text } of attributes) {
       const translated = await translateText(text, lang);
+      if (runId !== activeTranslationRun) return;
       node.setAttribute(attr, translated);
+    }
+
+    if (titleElement?.__originalText) {
+      const translatedTitle = await translateText(titleElement.__originalText, lang);
+      if (runId !== activeTranslationRun) return;
+      titleElement.textContent = translatedTitle;
     }
   }
 
@@ -388,6 +464,7 @@
   }
 
   const lang = detectLanguage();
+  loadTranslationCache();
   createLanguageSelector(lang);
   applyTranslations(lang);
   applyAutoPageTranslation(lang);
