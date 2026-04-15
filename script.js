@@ -43,11 +43,7 @@
       "contact.integration.research.title": "Python & die Entwicklungsumgebung.",
       "contact.integration.research.copy": "Profitieren Sie von unserer umfassenden Python-Library. Alle Ressourcen und die API-Schnittstelle finden Sie in unserem offenen Repository.",
       "contact.integration.cta.repo": "Direkt ins Entwickler-Repository",
-      "contact.integration.cta.partner": "Partnerschaft anfragen",
-      "contact.meta.title": "Kontakt — DynoForce",
-      "contact.meta.description": "Kontakt zu DynoForce für Fragen zu DynoGrip, DynoPull, App, Verfügbarkeit und Zusammenarbeit.",
-      "aria.brand.home": "DynoForce Startseite",
-      "aria.nav.main": "Hauptnavigation"
+      "contact.integration.cta.partner": "Partnerschaft anfragen"
     },
     en: {
       "nav.products": "Products",
@@ -89,11 +85,7 @@
       "contact.integration.research.title": "Python & development environment.",
       "contact.integration.research.copy": "Benefit from our comprehensive Python library. You can find all resources and the API interface in our open repository.",
       "contact.integration.cta.repo": "Go to developer repository",
-      "contact.integration.cta.partner": "Request partnership",
-      "contact.meta.title": "Contact — DynoForce",
-      "contact.meta.description": "Contact DynoForce for questions about DynoGrip, DynoPull, app availability, and collaboration.",
-      "aria.brand.home": "DynoForce home page",
-      "aria.nav.main": "Main navigation"
+      "contact.integration.cta.partner": "Request partnership"
     },
     fr: {
       "nav.products": "Produits",
@@ -135,11 +127,7 @@
       "contact.integration.research.title": "Python et l’environnement de développement.",
       "contact.integration.research.copy": "Profitez de notre bibliothèque Python complète. Vous trouverez toutes les ressources et l’interface API dans notre dépôt ouvert.",
       "contact.integration.cta.repo": "Accéder au dépôt développeur",
-      "contact.integration.cta.partner": "Demander un partenariat",
-      "contact.meta.title": "Contact — DynoForce",
-      "contact.meta.description": "Contactez DynoForce pour toute question sur DynoGrip, DynoPull, l’app, la disponibilité et la collaboration.",
-      "aria.brand.home": "Page d’accueil DynoForce",
-      "aria.nav.main": "Navigation principale"
+      "contact.integration.cta.partner": "Demander un partenariat"
     },
     it: {
       "nav.products": "Prodotti",
@@ -181,11 +169,7 @@
       "contact.integration.research.title": "Python e ambiente di sviluppo.",
       "contact.integration.research.copy": "Approfitta della nostra libreria Python completa. Tutte le risorse e l’interfaccia API sono disponibili nel nostro repository aperto.",
       "contact.integration.cta.repo": "Vai al repository sviluppatori",
-      "contact.integration.cta.partner": "Richiedi partnership",
-      "contact.meta.title": "Contatti — DynoForce",
-      "contact.meta.description": "Contatta DynoForce per domande su DynoGrip, DynoPull, app, disponibilità e collaborazioni.",
-      "aria.brand.home": "Home page DynoForce",
-      "aria.nav.main": "Navigazione principale"
+      "contact.integration.cta.partner": "Richiedi partnership"
     }
   };
 
