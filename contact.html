@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt — DynoForce</title>
-  <meta name="description" content="Kontakt zu DynoForce für Fragen zu DynoGrip, DynoPull, App, Verfügbarkeit und Zusammenarbeit." />
+  <title data-i18n="contact.meta.title">Kontakt — DynoForce</title>
+  <meta name="description" data-i18n-attr="content:contact.meta.description" content="Kontakt zu DynoForce für Fragen zu DynoGrip, DynoPull, App, Verfügbarkeit und Zusammenarbeit." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="shortcut icon" href="favicon.png" type="image/png" />
@@ -13,11 +13,11 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="index.html" aria-label="DynoForce Startseite">
+    <a class="brand" href="index.html" data-i18n-attr="aria-label:aria.brand.home" aria-label="DynoForce Startseite">
       <div class="brand-mark"></div>
       <span>DynoForce</span>
     </a>
-    <nav class="nav-links" aria-label="Hauptnavigation">
+    <nav class="nav-links" data-i18n-attr="aria-label:aria.nav.main" aria-label="Hauptnavigation">
       <a href="produkte.html" data-i18n="nav.products">Produkte</a>
       <a href="app.html" data-i18n="nav.app">App</a>
       <a href="about.html" data-i18n="nav.about">About</a>
@@ -30,8 +30,8 @@
 
 <section class="hero container">
   <div class="eyebrow" data-i18n="nav.contact">Kontakt</div>
-  <h1>Fragen, Interesse oder Zusammenarbeit?</h1>
-  <p class="lead">
+  <h1 data-i18n="contact.hero.title">Fragen, Interesse oder Zusammenarbeit?</h1>
+  <p class="lead" data-i18n="contact.hero.lead">
     Du möchtest mehr über DynoGrip, DynoPull oder die App erfahren, ein Modul ausprobieren oder über eine
     Zusammenarbeit sprechen? Dann melde dich direkt.
   </p>
@@ -40,52 +40,48 @@
 <section class="section container">
   <div class="contact-grid">
     <div class="contact-card">
-      <h3>Direkter Kontakt</h3>
-      <p class="contact-copy">
+      <h3 data-i18n="contact.direct.title">Direkter Kontakt</h3>
+      <p class="contact-copy" data-i18n="contact.direct.copy">
         Für Produktinteresse, Rückfragen, Projektanfragen oder Zusammenarbeit kannst du direkt Kontakt aufnehmen.
       </p>
       <div class="contact-list">
         <a href="mailto:info@dynoforce.ch">
-          <span class="contact-label">E-Mail</span>
+          <span class="contact-label" data-i18n="contact.label.email">E-Mail</span>
           info@dynoforce.ch
         </a>
         <a href="https://dynoforce.ch" target="_blank" rel="noreferrer noopener">
-          <span class="contact-label">Website</span>
+          <span class="contact-label" data-i18n="contact.label.website">Website</span>
           dynoforce.ch
         </a>
         <div>
-          <span class="contact-label">Möglich für</span>
-          Produktanfragen, App-Fragen, Verfügbarkeit und Zusammenarbeit
+          <span class="contact-label" data-i18n="contact.label.availableFor">Möglich für</span>
+          <span data-i18n="contact.availableFor.items">Produktanfragen, App-Fragen, Verfügbarkeit und Zusammenarbeit</span>
         </div>
       </div>
     </div>
 
     <div class="contact-card">
-      <h3>Kontaktformular</h3>
-      <p class="contact-copy">
-        Not ready yet
-      </p>
+      <h3 data-i18n="contact.form.title">Kontaktformular</h3>
+      <p class="contact-copy" data-i18n="contact.form.intro">Noch nicht bereit</p>
       <form class="form" id="contactForm">
         <div class="field">
           <label class="label" for="name" data-i18n="contact.form.name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Dein Name" required />
+          <input id="name" name="name" type="text" data-i18n-placeholder="contact.form.name.placeholder" placeholder="Dein Name" required />
         </div>
         <div class="field">
           <label class="label" for="email" data-i18n="contact.form.email">E-Mail</label>
-          <input id="email" name="email" type="email" placeholder="deine@email.ch" required />
+          <input id="email" name="email" type="email" data-i18n-placeholder="contact.form.email.placeholder" placeholder="deine@email.ch" required />
         </div>
         <div class="field">
           <label class="label" for="subject" data-i18n="contact.form.subject">Betreff</label>
-          <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required />
+          <input id="subject" name="subject" type="text" data-i18n-placeholder="contact.form.subject.placeholder" placeholder="Worum geht es?" required />
         </div>
         <div class="field">
           <label class="label" for="message" data-i18n="contact.form.message">Nachricht</label>
-          <textarea id="message" name="message" placeholder="Beschreibe dein Anliegen kurz" required></textarea>
+          <textarea id="message" name="message" data-i18n-placeholder="contact.form.message.placeholder" placeholder="Beschreibe dein Anliegen kurz" required></textarea>
         </div>
         <button class="btn btn-primary" type="submit" data-i18n="contact.form.submit">Nachricht per E-Mail senden</button>
-        <div class="copy">
-          Die Funktion zum Senden des Formulares ist momentan nicht implemnetiert. 
-        </div>
+        <div class="copy" data-i18n="contact.form.note">Die Funktion zum Senden des Formulars ist momentan nicht implementiert.</div>
       </form>
     </div>
   </div>
@@ -93,30 +89,30 @@
 
 <section class="section container platform-integration">
   <div class="section-head">
-    <h2 class="reveal-title">Der offene DynoForce Ansatz: Vom Gerät zur gesamten Plattform.</h2>
-    <p class="body-copy">
-        Wir sehen DynoForce nicht nur als Produkt, sondern als **wissenschaftliches Ökosystem**. Für Experten – Forscher, Therapeuten, Forschungskliniken – entwickeln wir die Technologie für Ihre Bedürfnisse.
+    <h2 class="reveal-title" data-i18n="contact.integration.title">Der offene DynoForce Ansatz: Vom Gerät zur gesamten Plattform.</h2>
+    <p class="body-copy" data-i18n="contact.integration.copy">
+        Wir sehen DynoForce nicht nur als Produkt, sondern als wissenschaftliches Ökosystem. Für Experten – Forscher, Therapeuten und Forschungskliniken – entwickeln wir die Technologie für Ihre Bedürfnisse.
     </p>
   </div>
   <div class="platform-details grid-2">
     <div class="card card-technical">
-      <div class="eyebrow">🛠️ Skalierbare Entwicklung</div>
-      <h3 class="tech-title">Unsere API: Ihr Schlüssel zur Individualisierung.</h3>
-      <p class="body-copy">
+      <div class="eyebrow" data-i18n="contact.integration.dev.eyebrow">🛠️ Skalierbare Entwicklung</div>
+      <h3 class="tech-title" data-i18n="contact.integration.dev.title">Unsere API: Ihr Schlüssel zur Individualisierung.</h3>
+      <p class="body-copy" data-i18n="contact.integration.dev.copy">
         Unser System ist modular und über eine offene API zugänglich. Entwickeln Sie eigene Programme, Protokolle oder Schnittstellen zu bestehenden Managementsystemen (PMS). Wir stellen die Daten, Sie definieren die Anwendung.
       </p>
     </div>
     <div class="card card-developer">
-      <div class="eyebrow">💻 Für Entwickler und Forschung</div>
-      <h3 class="tech-title">Python & die Entwicklungsumgebung.</h3>
-      <p class="body-copy">
-        Profitieren Sie von unserer umfassenden Python-Library. Alle Ressourcen und die API-Schnittstelle finden Sie in unserem offenen Repository. **[LINK: www.vadergit.dynoforce.com]**
+      <div class="eyebrow" data-i18n="contact.integration.research.eyebrow">💻 Für Entwickler und Forschung</div>
+      <h3 class="tech-title" data-i18n="contact.integration.research.title">Python & die Entwicklungsumgebung.</h3>
+      <p class="body-copy" data-i18n="contact.integration.research.copy">
+        Profitieren Sie von unserer umfassenden Python-Library. Alle Ressourcen und die API-Schnittstelle finden Sie in unserem offenen Repository.
       </p>
     </div>
   </div>
   <div class="final-cta-integration">
-      <a class="btn btn-secondary btn-large" href="https://github.com/Vadergit/dynoforce-ble" target="_blank">Direkt ins Entwickler-Repository</a>
-      <a class="btn btn-primary btn-large" href="contact.html">Partnerschaft anfragen</a>
+      <a class="btn btn-secondary btn-large" href="https://github.com/Vadergit/dynoforce-ble" target="_blank" data-i18n="contact.integration.cta.repo">Direkt ins Entwickler-Repository</a>
+      <a class="btn btn-primary btn-large" href="contact.html" data-i18n="contact.integration.cta.partner">Partnerschaft anfragen</a>
   </div>
 </section>
 
