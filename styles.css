@@ -97,10 +97,10 @@ h3{font-size:1.34rem;line-height:1.15;letter-spacing:-.02em;font-weight:600}
 .visual-card .copy-wrap h3{margin-bottom:8px}
 .image-fit{background:linear-gradient(180deg,#fff 0%,#f2f4f7 100%)}
 .image-fit img{object-fit: contain;background:transparent}
-.product-card{overflow:hidden;border-radius:44px}
-.product-card .image{aspect-ratio:16/11;background:linear-gradient(180deg,#fff 0%,#f2f4f7 100%);padding:28px}
-.product-card .image img{width:100%;height:100%;object-fit: contain}
-.product-card .copy-wrap{padding:32px}
+.product-card{overflow:hidden;border-radius:44px;display:flex;flex-direction:column;height:100%}
+.product-card .image{aspect-ratio:16/10;background:linear-gradient(180deg,#fff 0%,#f2f4f7 100%);padding:24px;margin:18px 18px 0;border-radius:28px}
+.product-card .image img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block}
+.product-card .copy-wrap{padding:32px;display:flex;flex-direction:column;flex:1}
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 22px}
 .tag{padding:8px 12px;border-radius:999px;background:#f0f2f5;color:#515154;font-size:.88rem;font-weight:500}
 .feature-list,.spec-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
@@ -135,7 +135,9 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   .hero-frame,.showcase,.final-cta,.contact-card,.product-card{border-radius:24px}
   .card,.product-card .copy-wrap,.visual-card .copy-wrap,.contact-card{padding:24px}
   .hero-phone-strip{padding:18px}
+  .product-card .image{margin:14px 14px 0;padding:16px;border-radius:20px}
 }
+
 
 
 .resource-row{
@@ -363,9 +365,20 @@ h3,
 
 .product-card .image img {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  max-height: 100% !important;
   object-fit: contain !important;
   object-position: center center !important;
+}
+
+.product-image-dynopull {
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+
+.product-intro-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .dynopull-device {
