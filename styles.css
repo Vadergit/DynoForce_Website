@@ -363,17 +363,23 @@ h3,
   justify-content: center !important;
 }
 
+.product-card .image {
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 0;
+}
+
 .product-card .image img {
   width: 100% !important;
   height: 100% !important;
-  max-height: 100% !important;
-  object-fit: contain !important;
+  max-height: none !important;
+  object-fit: cover !important;
   object-position: center center !important;
+  border-radius: inherit;
 }
 
 .product-image-dynopull {
-  transform: scale(1.1);
-  transform-origin: center center;
+  transform: none;
 }
 
 .product-intro-card .btn {
