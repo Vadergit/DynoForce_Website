@@ -433,7 +433,7 @@
 
     const shopLink = document.createElement("a");
     shopLink.className = "shop-link";
-    shopLink.href = "https://staging4.dynoforce.ch/shop/";
+    shopLink.href = "http://shop.dynoforce.ch/shop/";
     shopLink.setAttribute("data-i18n", "nav.shop");
     shopLink.textContent = "Shop";
 
