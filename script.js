@@ -484,40 +484,4 @@
   applyTranslations(lang);
   applyAutoPageTranslation(lang);
 
-  const form = document.getElementById("contactForm");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const subjectInput = document.getElementById("subject");
-      const subjectText = subjectInput ? subjectInput.value.trim() : "";
-      const message = document.getElementById("message").value.trim();
-
-      const currentLang = localStorage.getItem("dynoforce-lang") || lang;
-      const subjects = {
-        de: "Anfrage über dynoforce.ch",
-        en: "Request via dynoforce.ch",
-        fr: "Demande via dynoforce.ch",
-        it: "Richiesta tramite dynoforce.ch"
-      };
-
-      const bodyLabels = {
-        de: { name: "Name", email: "E-Mail", message: "Nachricht" },
-        en: { name: "Name", email: "Email", message: "Message" },
-        fr: { name: "Nom", email: "E-mail", message: "Message" },
-        it: { name: "Nome", email: "E-mail", message: "Messaggio" }
-      };
-
-      const labels = bodyLabels[currentLang] || bodyLabels.de;
-      const computedSubject = subjectText || (subjects[currentLang] || subjects.de);
-      const subject = encodeURIComponent(computedSubject);
-      const body = encodeURIComponent(
-        labels.name + ": " + name + "\n" +
-        labels.email + ": " + email + "\n\n" +
-        labels.message + ":\n" + message
-      );
-      window.location.href = "mailto:info@dynoforce.ch?subject=" + subject + "&body=" + body;
-    });
-  }
 })();
