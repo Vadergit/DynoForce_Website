@@ -8,6 +8,7 @@
       "nav.app": "App",
       "nav.about": "Über uns",
       "nav.contact": "Kontakt",
+      "nav.shop": "Shop",
       "footer.note": "Präzise Kraftmessung mit intelligenter Software für alle, die Training nachvollziehbar, strukturiert und messbar machen wollen.",
       "footer.platform": "Plattform",
       "footer.wiki": "Wiki & Ressourcen",
@@ -50,6 +51,7 @@
       "nav.app": "App",
       "nav.about": "About",
       "nav.contact": "Contact",
+      "nav.shop": "Shop",
       "footer.note": "Precise strength measurement with smart software for anyone who wants training to be clear, structured, and measurable.",
       "footer.platform": "Platform",
       "footer.wiki": "Wiki & Resources",
@@ -92,6 +94,7 @@
       "nav.app": "App",
       "nav.about": "À propos",
       "nav.contact": "Contact",
+      "nav.shop": "Boutique",
       "footer.note": "Mesure précise de la force avec un logiciel intelligent pour rendre l'entraînement clair, structuré et mesurable.",
       "footer.platform": "Plateforme",
       "footer.wiki": "Wiki & Ressources",
@@ -134,6 +137,7 @@
       "nav.app": "App",
       "nav.about": "Chi siamo",
       "nav.contact": "Contatti",
+      "nav.shop": "Shop",
       "footer.note": "Misurazione precisa della forza con software intelligente per un allenamento chiaro, strutturato e misurabile.",
       "footer.platform": "Piattaforma",
       "footer.wiki": "Wiki e risorse",
@@ -424,6 +428,15 @@
     const nav = document.querySelector(".nav");
     if (!nav) return;
 
+    const navActions = document.createElement("div");
+    navActions.className = "nav-actions";
+
+    const shopLink = document.createElement("a");
+    shopLink.className = "shop-link";
+    shopLink.href = "https://staging4.dynoforce.ch/shop/";
+    shopLink.setAttribute("data-i18n", "nav.shop");
+    shopLink.textContent = "Shop";
+
     const wrapper = document.createElement("div");
     wrapper.className = "lang-switcher";
 
@@ -460,7 +473,9 @@
 
     wrapper.appendChild(label);
     wrapper.appendChild(select);
-    nav.appendChild(wrapper);
+    navActions.appendChild(shopLink);
+    navActions.appendChild(wrapper);
+    nav.appendChild(navActions);
   }
 
   const lang = detectLanguage();

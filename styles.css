@@ -540,6 +540,28 @@ h3,
   }
 }
 
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-left:auto;
+}
+.shop-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 14px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  font-size:.88rem;
+  font-weight:600;
+}
+.shop-link:hover,.shop-link:focus-visible{
+  background:var(--accent-hover);
+}
+
 .lang-switcher{
   display:flex;
   align-items:center;
@@ -560,6 +582,9 @@ h3,
   font-size:.88rem;
 }
 @media (max-width:720px){
+  .nav-actions{
+    margin-left:0;
+  }
   .lang-switcher{
     margin-left:0;
   }
