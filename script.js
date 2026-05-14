@@ -6,7 +6,7 @@
     de: {
       "nav.products": "Produkte",
       "nav.app": "App",
-      "nav.about": "Über uns",
+      "nav.about": "Über mich",
       "nav.contact": "Kontakt",
       "nav.shop": "Shop",
       "footer.note": "Präzise Kraftmessung mit intelligenter Software für alle, die Training nachvollziehbar, strukturiert und messbar machen wollen.",
