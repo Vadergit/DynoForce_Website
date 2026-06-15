@@ -4,9 +4,9 @@
 
   const translations = {
     de: {
-      "manual.eyebrow": "DynoGrip Manual",
+      "manual.eyebrow": "DynoGrip Anleitung",
       "manual.hero.title": "Bedienungsanleitung für DynoGrip.",
-      "manual.hero.lead": "Strukturiert, sicher und passend zur gewählten Seitensprache. Es wird automatisch nur die aktive Sprache angezeigt.",
+      "manual.hero.lead": "Wähle die Sprache oben rechts aus. Danach wird hier automatisch die passende Anleitung angezeigt.",
       "manual.cta.read": "Anleitung lesen",
       "manual.cta.app": "Zur App",
       "manual.highlight.load.label": "Belastung",
@@ -65,9 +65,9 @@
       "contact.integration.cta.partner": "Partnerschaft anfragen"
     },
     en: {
-      "manual.eyebrow": "DynoGrip Manual",
+      "manual.eyebrow": "DynoGrip manual",
       "manual.hero.title": "User manual for DynoGrip.",
-      "manual.hero.lead": "Structured, safe, and matched to the selected site language. Only the active language is shown automatically.",
+      "manual.hero.lead": "Select the language in the top right. The matching manual is shown here automatically.",
       "manual.cta.read": "Read manual",
       "manual.cta.app": "Open app page",
       "manual.highlight.load.label": "Load",
@@ -128,7 +128,7 @@
     fr: {
       "manual.eyebrow": "Manuel DynoGrip",
       "manual.hero.title": "Mode d’emploi pour DynoGrip.",
-      "manual.hero.lead": "Structuré, sûr et adapté à la langue choisie du site. Seule la langue active est affichée automatiquement.",
+      "manual.hero.lead": "Choisis la langue en haut à droite. Le manuel correspondant s’affiche automatiquement ici.",
       "manual.cta.read": "Lire le manuel",
       "manual.cta.app": "Voir l’app",
       "manual.highlight.load.label": "Charge",
@@ -189,7 +189,7 @@
     it: {
       "manual.eyebrow": "Manuale DynoGrip",
       "manual.hero.title": "Manuale utente per DynoGrip.",
-      "manual.hero.lead": "Strutturato, sicuro e coerente con la lingua selezionata del sito. Viene mostrata automaticamente solo la lingua attiva.",
+      "manual.hero.lead": "Seleziona la lingua in alto a destra. Il manuale corrispondente viene mostrato automaticamente qui.",
       "manual.cta.read": "Leggi il manuale",
       "manual.cta.app": "Vai all’app",
       "manual.highlight.load.label": "Carico",
@@ -496,15 +496,42 @@
     }
   }
 
+  function buildManualToc(activeSection) {
+    const tocLinks = document.querySelector(".manual-toc-links");
+    if (!tocLinks || !activeSection) return;
+
+    tocLinks.innerHTML = "";
+    activeSection.querySelectorAll("h3").forEach((heading, index) => {
+      if (!heading.id) {
+        const sectionLang = activeSection.getAttribute("data-manual-lang") || DEFAULT_LANG;
+        heading.id = `manual-${sectionLang}-section-${index + 1}`;
+      }
+
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent.trim();
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        heading.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", `#${heading.id}`);
+      });
+      tocLinks.appendChild(link);
+    });
+  }
+
   function applyManualLanguage(lang) {
     const manualSections = document.querySelectorAll("[data-manual-lang]");
     if (!manualSections.length) return;
 
+    let activeSection = null;
     manualSections.forEach((section) => {
       const isActive = section.getAttribute("data-manual-lang") === lang;
       section.hidden = !isActive;
       section.setAttribute("aria-hidden", String(!isActive));
+      if (isActive) activeSection = section;
     });
+
+    buildManualToc(activeSection);
   }
 
   function createLanguageSelector(activeLang) {
