@@ -4,6 +4,24 @@
 
   const translations = {
     de: {
+      "manual.eyebrow": "DynoGrip Manual",
+      "manual.hero.title": "Bedienungsanleitung für DynoGrip.",
+      "manual.hero.lead": "Strukturiert, sicher und passend zur gewählten Seitensprache. Es wird automatisch nur die aktive Sprache angezeigt.",
+      "manual.cta.read": "Anleitung lesen",
+      "manual.cta.app": "Zur App",
+      "manual.highlight.load.label": "Belastung",
+      "manual.highlight.load.value": "100 kg dauerhaft",
+      "manual.highlight.battery.label": "Akku",
+      "manual.highlight.battery.value": "160 h+ pro Ladung",
+      "manual.highlight.connection.label": "Verbindung",
+      "manual.highlight.connection.value": "Bluetooth Low Energy",
+      "manual.toc.aria": "Inhaltsnavigation",
+      "manual.toc.title": "Inhalt",
+      "manual.toc.specs": "Spezifikationen",
+      "manual.toc.start": "Start & Verbindung",
+      "manual.toc.use": "Nutzung",
+      "manual.toc.care": "Pflege & Sicherheit",
+      "manual.toc.support": "Support",
       "nav.products": "Produkte",
       "nav.app": "App",
       "nav.about": "Über mich",
@@ -47,6 +65,24 @@
       "contact.integration.cta.partner": "Partnerschaft anfragen"
     },
     en: {
+      "manual.eyebrow": "DynoGrip Manual",
+      "manual.hero.title": "User manual for DynoGrip.",
+      "manual.hero.lead": "Structured, safe, and matched to the selected site language. Only the active language is shown automatically.",
+      "manual.cta.read": "Read manual",
+      "manual.cta.app": "Open app page",
+      "manual.highlight.load.label": "Load",
+      "manual.highlight.load.value": "100 kg continuous",
+      "manual.highlight.battery.label": "Battery",
+      "manual.highlight.battery.value": "160 h+ per charge",
+      "manual.highlight.connection.label": "Connection",
+      "manual.highlight.connection.value": "Bluetooth Low Energy",
+      "manual.toc.aria": "Table of contents",
+      "manual.toc.title": "Contents",
+      "manual.toc.specs": "Specifications",
+      "manual.toc.start": "Start & connection",
+      "manual.toc.use": "Use",
+      "manual.toc.care": "Care & safety",
+      "manual.toc.support": "Support",
       "nav.products": "Products",
       "nav.app": "App",
       "nav.about": "About",
@@ -90,6 +126,24 @@
       "contact.integration.cta.partner": "Request partnership"
     },
     fr: {
+      "manual.eyebrow": "Manuel DynoGrip",
+      "manual.hero.title": "Mode d’emploi pour DynoGrip.",
+      "manual.hero.lead": "Structuré, sûr et adapté à la langue choisie du site. Seule la langue active est affichée automatiquement.",
+      "manual.cta.read": "Lire le manuel",
+      "manual.cta.app": "Voir l’app",
+      "manual.highlight.load.label": "Charge",
+      "manual.highlight.load.value": "100 kg en continu",
+      "manual.highlight.battery.label": "Batterie",
+      "manual.highlight.battery.value": "160 h+ par charge",
+      "manual.highlight.connection.label": "Connexion",
+      "manual.highlight.connection.value": "Bluetooth Low Energy",
+      "manual.toc.aria": "Sommaire",
+      "manual.toc.title": "Sommaire",
+      "manual.toc.specs": "Spécifications",
+      "manual.toc.start": "Démarrage & connexion",
+      "manual.toc.use": "Utilisation",
+      "manual.toc.care": "Entretien & sécurité",
+      "manual.toc.support": "Support",
       "nav.products": "Produits",
       "nav.app": "App",
       "nav.about": "À propos",
@@ -133,6 +187,24 @@
       "contact.integration.cta.partner": "Demander un partenariat"
     },
     it: {
+      "manual.eyebrow": "Manuale DynoGrip",
+      "manual.hero.title": "Manuale utente per DynoGrip.",
+      "manual.hero.lead": "Strutturato, sicuro e coerente con la lingua selezionata del sito. Viene mostrata automaticamente solo la lingua attiva.",
+      "manual.cta.read": "Leggi il manuale",
+      "manual.cta.app": "Vai all’app",
+      "manual.highlight.load.label": "Carico",
+      "manual.highlight.load.value": "100 kg continuo",
+      "manual.highlight.battery.label": "Batteria",
+      "manual.highlight.battery.value": "160 h+ per carica",
+      "manual.highlight.connection.label": "Connessione",
+      "manual.highlight.connection.value": "Bluetooth Low Energy",
+      "manual.toc.aria": "Indice",
+      "manual.toc.title": "Indice",
+      "manual.toc.specs": "Specifiche",
+      "manual.toc.start": "Avvio & connessione",
+      "manual.toc.use": "Utilizzo",
+      "manual.toc.care": "Cura & sicurezza",
+      "manual.toc.support": "Supporto",
       "nav.products": "Prodotti",
       "nav.app": "App",
       "nav.about": "Chi siamo",
@@ -323,7 +395,7 @@
         if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)) {
           return NodeFilter.FILTER_REJECT;
         }
-        if (parent.closest("[data-i18n], [data-i18n-placeholder], [data-i18n-attr], .lang-switcher")) {
+        if (parent.closest("[data-no-auto-translate], [data-i18n], [data-i18n-placeholder], [data-i18n-attr], .lang-switcher")) {
           return NodeFilter.FILTER_REJECT;
         }
         const text = node.nodeValue.trim();
@@ -346,7 +418,7 @@
   function collectTranslatableAttributes() {
     const items = [];
     document.querySelectorAll("*").forEach((node) => {
-      if (node.closest("[data-i18n-attr], .lang-switcher")) return;
+      if (node.closest("[data-no-auto-translate], [data-i18n-attr], .lang-switcher")) return;
 
       TRANSLATABLE_ATTRS.forEach((attr) => {
         const value = node.getAttribute?.(attr);
@@ -424,6 +496,17 @@
     }
   }
 
+  function applyManualLanguage(lang) {
+    const manualSections = document.querySelectorAll("[data-manual-lang]");
+    if (!manualSections.length) return;
+
+    manualSections.forEach((section) => {
+      const isActive = section.getAttribute("data-manual-lang") === lang;
+      section.hidden = !isActive;
+      section.setAttribute("aria-hidden", String(!isActive));
+    });
+  }
+
   function createLanguageSelector(activeLang) {
     const nav = document.querySelector(".nav");
     if (!nav) return;
@@ -468,6 +551,7 @@
       const lang = event.target.value;
       localStorage.setItem("dynoforce-lang", lang);
       applyTranslations(lang);
+      applyManualLanguage(lang);
       applyAutoPageTranslation(lang);
     });
 
@@ -482,6 +566,7 @@
   loadTranslationCache();
   createLanguageSelector(lang);
   applyTranslations(lang);
+  applyManualLanguage(lang);
   applyAutoPageTranslation(lang);
 
 })();
