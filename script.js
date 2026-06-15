@@ -9,6 +9,7 @@
       "manual.hero.lead": "Wähle die Sprache oben rechts aus. Danach wird hier automatisch die passende Anleitung angezeigt.",
       "manual.cta.read": "Anleitung lesen",
       "manual.cta.app": "Zur App",
+      "manual.cta.download": "Manual als PDF herunterladen",
       "manual.highlight.load.label": "Belastung",
       "manual.highlight.load.value": "100 kg dauerhaft",
       "manual.highlight.battery.label": "Akku",
@@ -70,6 +71,7 @@
       "manual.hero.lead": "Select the language in the top right. The matching manual is shown here automatically.",
       "manual.cta.read": "Read manual",
       "manual.cta.app": "Open app page",
+      "manual.cta.download": "Download manual as PDF",
       "manual.highlight.load.label": "Load",
       "manual.highlight.load.value": "100 kg continuous",
       "manual.highlight.battery.label": "Battery",
@@ -131,6 +133,7 @@
       "manual.hero.lead": "Choisis la langue en haut à droite. Le manuel correspondant s’affiche automatiquement ici.",
       "manual.cta.read": "Lire le manuel",
       "manual.cta.app": "Voir l’app",
+      "manual.cta.download": "Télécharger le manuel en PDF",
       "manual.highlight.load.label": "Charge",
       "manual.highlight.load.value": "100 kg en continu",
       "manual.highlight.battery.label": "Batterie",
@@ -192,6 +195,7 @@
       "manual.hero.lead": "Seleziona la lingua in alto a destra. Il manuale corrispondente viene mostrato automaticamente qui.",
       "manual.cta.read": "Leggi il manuale",
       "manual.cta.app": "Vai all’app",
+      "manual.cta.download": "Scarica il manuale in PDF",
       "manual.highlight.load.label": "Carico",
       "manual.highlight.load.value": "100 kg continuo",
       "manual.highlight.battery.label": "Batteria",
@@ -589,9 +593,19 @@
     nav.appendChild(navActions);
   }
 
+
+  function setupManualPdfDownload() {
+    document.querySelectorAll("[data-manual-print]").forEach((button) => {
+      button.addEventListener("click", () => {
+        window.print();
+      });
+    });
+  }
+
   const lang = detectLanguage();
   loadTranslationCache();
   createLanguageSelector(lang);
+  setupManualPdfDownload();
   applyTranslations(lang);
   applyManualLanguage(lang);
   applyAutoPageTranslation(lang);

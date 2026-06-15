@@ -837,3 +837,62 @@ h3,
   .manual-hero-actions{justify-content:flex-start;}
   .manual-highlights{margin-top:26px;}
 }
+
+.manual-download-btn{
+  gap:8px;
+}
+.manual-download-btn::before{
+  content:"↓";
+  font-size:1.05em;
+  line-height:1;
+}
+@media print{
+  body{
+    background:#fff !important;
+    color:#000;
+  }
+  .site-header,
+  .site-footer,
+  .manual-toc,
+  .manual-hero-actions,
+  .lang-switcher,
+  .nav-actions{
+    display:none !important;
+  }
+  .container{
+    width:100%;
+  }
+  .manual-page,
+  .manual-card{
+    background:#fff !important;
+    box-shadow:none !important;
+  }
+  .manual-page .manual-hero{
+    padding:24px 0 18px;
+  }
+  .manual-layout{
+    display:block;
+    padding:0;
+  }
+  .manual-card{
+    padding:0;
+    border:0;
+    border-radius:0;
+  }
+  .manual-card[hidden]{
+    display:none !important;
+  }
+  .manual-card h3{
+    break-after:avoid;
+    page-break-after:avoid;
+  }
+  .table-wrap,
+  .manual-card table,
+  .manual-card tr{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .manual-card a{
+    color:#000;
+  }
+}
