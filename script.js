@@ -679,7 +679,10 @@
     let y = topY;
 
     function addPage() {
-      if (commands.length) pages.push(commands.join("\n"));
+      if (commands.length) {
+        commands.push("ET");
+        pages.push(commands.join("\n"));
+      }
       commands = ["BT", "/F1 10 Tf", "0 g"];
       y = topY;
     }
@@ -691,8 +694,7 @@
     function addLine(text, x, size, leading) {
       ensureSpace(leading);
       commands.push(`/F1 ${size} Tf`);
-      commands.push(`${x} ${y.toFixed(2)} Td (${pdfEscape(text)}) Tj`);
-      commands.push(`${-x} 0 Td`);
+      commands.push(`1 0 0 1 ${x} ${y.toFixed(2)} Tm (${pdfEscape(text)}) Tj`);
       y -= leading;
     }
 
