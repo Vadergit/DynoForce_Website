@@ -594,10 +594,186 @@
   }
 
 
+  function getActiveManualLanguage() {
+    const activeManual = document.querySelector("[data-manual-lang]:not([hidden])");
+    if (activeManual) return activeManual.getAttribute("data-manual-lang") || DEFAULT_LANG;
+
+    const storedLang = localStorage.getItem("dynoforce-lang");
+    if (SUPPORTED_LANGS.includes(storedLang)) return storedLang;
+
+    return detectLanguage();
+  }
+
+  function pdfEscape(text) {
+    return String(text)
+      .replace(/\\/g, "\\\\")
+      .replace(/\(/g, "\\(")
+      .replace(/\)/g, "\\)");
+  }
+
+  function normalizePdfText(text) {
+    return String(text)
+      .replace(/\s+/g, " ")
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201c\u201d]/g, '"')
+      .replace(/[\u2013\u2014]/g, "-")
+      .replace(/\u2026/g, "...")
+      .trim();
+  }
+
+  function wrapPdfText(text, maxChars) {
+    const words = normalizePdfText(text).split(" ").filter(Boolean);
+    const lines = [];
+    let current = "";
+
+    words.forEach((word) => {
+      if (!current) {
+        current = word;
+        return;
+      }
+      if (`${current} ${word}`.length > maxChars) {
+        lines.push(current);
+        current = word;
+      } else {
+        current = `${current} ${word}`;
+      }
+    });
+
+    if (current) lines.push(current);
+    return lines;
+  }
+
+  function collectManualPdfBlocks(article) {
+    const blocks = [];
+    const languageLabel = article.querySelector(".manual-lang-label")?.textContent || "";
+    if (languageLabel) blocks.push({ type: "meta", text: languageLabel });
+
+    article.querySelectorAll("h2, h3, p, li, tr").forEach((node) => {
+      if (node.matches("tr")) {
+        const cells = Array.from(node.children).map((cell) => normalizePdfText(cell.textContent));
+        if (cells.length) blocks.push({ type: "row", text: cells.join(": ") });
+        return;
+      }
+
+      if (node.closest("tr")) return;
+
+      const text = normalizePdfText(node.textContent);
+      if (!text) return;
+      const type = node.tagName.toLowerCase();
+      blocks.push({ type, text });
+    });
+
+    return blocks;
+  }
+
+  function createManualPdfBytes(article, lang) {
+    const pageWidth = 595.28;
+    const pageHeight = 841.89;
+    const marginX = 54;
+    const topY = 790;
+    const bottomY = 56;
+    const maxChars = 92;
+    const blocks = collectManualPdfBlocks(article);
+    const pages = [];
+    let commands = [];
+    let y = topY;
+
+    function addPage() {
+      if (commands.length) pages.push(commands.join("\n"));
+      commands = ["BT", "/F1 10 Tf", "0 g"];
+      y = topY;
+    }
+
+    function ensureSpace(height) {
+      if (y - height < bottomY) addPage();
+    }
+
+    function addLine(text, x, size, leading) {
+      ensureSpace(leading);
+      commands.push(`/F1 ${size} Tf`);
+      commands.push(`${x} ${y.toFixed(2)} Td (${pdfEscape(text)}) Tj`);
+      commands.push(`${-x} 0 Td`);
+      y -= leading;
+    }
+
+    addPage();
+    addLine("DynoGrip Manual", marginX, 20, 28);
+    addLine(`${new Date().toISOString().slice(0, 10)} - ${lang.toUpperCase()}`, marginX, 9, 22);
+
+    blocks.forEach((block) => {
+      const isTitle = block.type === "h2";
+      const isHeading = block.type === "h3";
+      const isList = block.type === "li";
+      const isMeta = block.type === "meta";
+      const isRow = block.type === "row";
+      const fontSize = isTitle ? 16 : isHeading ? 13 : isMeta ? 10 : 9.5;
+      const leading = isTitle ? 22 : isHeading ? 18 : 13;
+      const indent = isList ? 14 : isRow ? 10 : 0;
+      const prefix = isList ? "- " : isRow ? "- " : "";
+
+      if (isTitle || isHeading) y -= 6;
+      wrapPdfText(`${prefix}${block.text}`, maxChars - Math.round(indent / 3)).forEach((line, index) => {
+        addLine(index > 0 && prefix ? `  ${line}` : line, marginX + indent, fontSize, leading);
+      });
+      if (!isList && !isRow) y -= 4;
+    });
+
+    commands.push("ET");
+    pages.push(commands.join("\n"));
+
+    const objects = [];
+    objects.push("<< /Type /Catalog /Pages 2 0 R >>");
+    objects.push(`<< /Type /Pages /Kids [${pages.map((_, index) => `${index + 4} 0 R`).join(" ")}] /Count ${pages.length} >>`);
+    objects.push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>");
+
+    pages.forEach((content, index) => {
+      const contentObjectNumber = pages.length + 4 + index;
+      objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Resources << /Font << /F1 3 0 R >> >> /Contents ${contentObjectNumber} 0 R >>`);
+    });
+
+    pages.forEach((content) => {
+      objects.push(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`);
+    });
+
+    let pdf = "%PDF-1.4\n";
+    const offsets = [0];
+    objects.forEach((object, index) => {
+      offsets.push(pdf.length);
+      pdf += `${index + 1} 0 obj\n${object}\nendobj\n`;
+    });
+    const xrefOffset = pdf.length;
+    pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+    offsets.slice(1).forEach((offset) => {
+      pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+    });
+    pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+
+    return new Uint8Array(Array.from(pdf, (char) => char.charCodeAt(0) & 0xff));
+  }
+
+  function downloadManualPdf(lang) {
+    applyManualLanguage(lang);
+    const article = document.querySelector(`[data-manual-lang="${lang}"]`);
+    if (!article) return false;
+
+    const bytes = createManualPdfBytes(article, lang);
+    const blob = new Blob([bytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DynoGrip-Manual-${lang}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    return true;
+  }
+
   function setupManualPdfDownload() {
     document.querySelectorAll("[data-manual-print]").forEach((button) => {
       button.addEventListener("click", () => {
-        window.print();
+        const lang = getActiveManualLanguage();
+        if (!downloadManualPdf(lang)) window.print();
       });
     });
   }
