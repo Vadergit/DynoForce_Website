@@ -567,7 +567,9 @@
 
     const shopLink = document.createElement("a");
     shopLink.className = "shop-link";
-    shopLink.href = "http://shop.dynoforce.ch/shop/";
+    shopLink.href = "https://shop.dynoforce.ch/shop/";
+    shopLink.target = "_blank";
+    shopLink.rel = "noopener noreferrer";
     shopLink.setAttribute("data-i18n", "nav.shop");
     shopLink.textContent = "Shop";
 
@@ -800,10 +802,50 @@
     });
   }
 
+  function setupDynoGripColorPicker() {
+    document.querySelectorAll("[data-color-picker]").forEach((picker) => {
+      const image = picker.querySelector("[data-color-image]");
+      const name = picker.querySelector("[data-color-name]");
+      const stage = picker.querySelector("[data-color-stage]");
+      const swatches = Array.from(picker.querySelectorAll(".color-swatch"));
+
+      if (!image || !name || !stage || !swatches.length) return;
+
+      swatches.forEach((swatch) => {
+        const nextImage = new Image();
+        nextImage.src = swatch.dataset.image;
+
+        swatch.addEventListener("click", () => {
+          if (swatch.classList.contains("is-active")) return;
+
+          swatches.forEach((button) => {
+            const isSelected = button === swatch;
+            button.classList.toggle("is-active", isSelected);
+            button.setAttribute("aria-pressed", String(isSelected));
+          });
+
+          const selectedName = swatch.dataset.name;
+          const selectedImage = swatch.dataset.image;
+          stage.style.setProperty("--selected-color", swatch.dataset.color);
+          name.textContent = selectedName;
+          image.classList.add("is-changing");
+
+          window.setTimeout(() => {
+            image.src = selectedImage;
+            image.alt = `DynoGrip in ${selectedName}`;
+            image.onload = () => image.classList.remove("is-changing");
+            if (image.complete) image.classList.remove("is-changing");
+          }, 140);
+        });
+      });
+    });
+  }
+
   const lang = detectLanguage();
   loadTranslationCache();
   createLanguageSelector(lang);
   setupManualPdfDownload();
+  setupDynoGripColorPicker();
   applyTranslations(lang);
   applyManualLanguage(lang);
   applyAutoPageTranslation(lang);
