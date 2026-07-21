@@ -283,6 +283,210 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   text-align: left;
 }
 
+/* DynoGrip Farbauswahl */
+.dynogrip-colors{
+  padding-top:72px;
+}
+.dynogrip-colors-head{
+  max-width:840px;
+}
+.dynogrip-colors-head h2{
+  text-wrap:balance;
+}
+.color-showcase{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(360px,.65fr);
+  gap:0;
+  overflow:hidden;
+  min-height:610px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:44px;
+  background:rgba(255,255,255,.86);
+  box-shadow:var(--shadow-soft);
+  backdrop-filter:blur(14px);
+}
+.color-product-stage{
+  --selected-color:#68734e;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  overflow:hidden;
+  padding:54px clamp(26px,5vw,76px);
+  background:linear-gradient(
+    145deg,
+    #fff 0%,
+    color-mix(in srgb,#fff 94%,var(--selected-color)) 58%,
+    #f0f1f3 100%
+  );
+  transition:background .38s ease;
+}
+.color-product-image{
+  position:relative;
+  z-index:1;
+  width:min(76%,480px);
+  height:auto;
+  filter:drop-shadow(0 28px 30px rgba(0,0,0,.15));
+  transform:scale(1);
+  transition:opacity .18s ease,transform .35s cubic-bezier(.2,.75,.25,1),filter .35s ease;
+}
+.color-product-stage:hover .color-product-image{
+  transform:scale(1.035);
+  filter:drop-shadow(0 34px 34px rgba(0,0,0,.18));
+}
+.color-product-image.is-changing{
+  opacity:0;
+  transform:scale(.975);
+}
+.color-picker-panel{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  padding:52px clamp(30px,4vw,54px);
+  border-left:1px solid rgba(0,0,0,.06);
+}
+.color-current{
+  display:grid;
+  gap:4px;
+  margin-bottom:30px;
+}
+.color-current span{
+  color:var(--muted);
+  font-size:.9rem;
+  font-weight:600;
+}
+.color-current strong{
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.color-swatches{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px 8px;
+}
+.color-swatch{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+  padding:8px 3px;
+  border:0;
+  border-radius:16px;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font-size:.75rem;
+  font-weight:600;
+  line-height:1.22;
+  text-align:center;
+  transition:color .2s ease,background .2s ease,transform .2s ease;
+}
+.color-swatch:hover{
+  color:var(--text);
+  background:#f5f5f7;
+  transform:translateY(-2px);
+}
+.color-swatch:focus-visible{
+  outline:3px solid rgba(0,113,227,.28);
+  outline-offset:2px;
+}
+.color-swatch.is-active{
+  color:var(--text);
+  background:#f0f1f3;
+}
+.color-swatch-dot{
+  display:block;
+  width:42px;
+  height:42px;
+  border:3px solid #fff;
+  border-radius:50%;
+  background:var(--swatch);
+  box-shadow:0 0 0 1px rgba(0,0,0,.12),0 5px 12px rgba(0,0,0,.1);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.color-swatch-dot--light{
+  box-shadow:0 0 0 1px rgba(0,0,0,.2),0 5px 12px rgba(0,0,0,.08);
+}
+.color-swatch:hover .color-swatch-dot,
+.color-swatch.is-active .color-swatch-dot{
+  transform:scale(1.12);
+}
+.color-swatch.is-active .color-swatch-dot{
+  box-shadow:0 0 0 2px #fff,0 0 0 4px var(--text),0 7px 16px rgba(0,0,0,.14);
+}
+.color-picker-hint{
+  margin-top:26px;
+  color:var(--muted);
+  font-size:.9rem;
+  text-align:center;
+}
+.color-shop-link{
+  align-self:stretch;
+  margin-top:20px;
+}
+
+@media (max-width:960px){
+  .color-showcase{
+    grid-template-columns:1fr;
+  }
+  .color-product-stage{
+    min-height:480px;
+  }
+  .color-product-image{
+    width:min(72%,460px);
+  }
+  .color-picker-panel{
+    border-top:1px solid rgba(0,0,0,.06);
+    border-left:0;
+  }
+}
+
+@media (max-width:720px){
+  .dynogrip-colors{
+    padding-top:58px;
+  }
+  .dynogrip-colors-head{
+    margin-bottom:36px;
+  }
+  .color-showcase{
+    min-height:0;
+    border-radius:24px;
+  }
+  .color-product-stage{
+    min-height:330px;
+    padding:34px 20px;
+  }
+  .color-product-image{
+    width:min(86%,360px);
+  }
+  .color-picker-panel{
+    padding:30px 20px 26px;
+  }
+  .color-current{
+    margin-bottom:22px;
+    text-align:center;
+  }
+  .color-swatch{
+    font-size:.7rem;
+  }
+  .color-swatch-dot{
+    width:38px;
+    height:38px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .color-product-image,
+  .color-swatch,
+  .color-swatch-dot{
+    transition:none;
+  }
+}
+
 
 /* Robuste Layout-Korrekturen */
 .grid-2 > *,
