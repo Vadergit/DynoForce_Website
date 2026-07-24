@@ -261,6 +261,9 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   font-size:clamp(3.7rem,6.7vw,6.9rem);
   line-height:.9;
 }
+.profile-intro h1 span{
+  display:block;
+}
 .profile-deck{
   max-width:720px;
   color:var(--muted);
@@ -499,8 +502,8 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   }
   .profile-intro h1{
     max-width:100%;
-    font-size:clamp(2.55rem,12.7vw,3.25rem);
-    overflow-wrap:anywhere;
+    font-size:clamp(2.15rem,9.2vw,2.8rem);
+    overflow-wrap:normal;
   }
   .profile-facts{
     grid-template-columns:1fr;
