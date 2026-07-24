@@ -409,6 +409,142 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
 .profile-award .link-arrow{
   color:#76b9ff;
 }
+.profile-award-links,
+.profile-role-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 24px;
+}
+.profile-translation{
+  margin-top:34px;
+  padding:28px;
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:24px;
+  background:rgba(255,255,255,.62);
+}
+.profile-translation h3{
+  margin:0 0 16px;
+  font-size:1.2rem;
+}
+.profile-translation p{
+  font-size:1rem;
+}
+.profile-translation p + p{
+  margin-top:12px;
+}
+.profile-experience{
+  padding-top:96px;
+}
+.profile-experience-head{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(40px,8vw,110px);
+  align-items:end;
+}
+.profile-experience-head h2{
+  max-width:12ch;
+}
+.profile-experience-head p,
+.profile-experience-de p{
+  color:#4b4b50;
+  font-size:1.08rem;
+  line-height:1.7;
+}
+.profile-experience-head p + p,
+.profile-experience-de p + p{
+  margin-top:14px;
+}
+.profile-experience-de{
+  max-width:920px;
+  margin:54px 0 58px auto;
+  padding:30px 34px;
+  border-left:3px solid var(--accent);
+  background:rgba(255,255,255,.55);
+}
+.profile-experience-de h3{
+  margin:0 0 14px;
+  font-size:clamp(1.35rem,2.3vw,1.9rem);
+}
+.profile-timeline{
+  position:relative;
+  display:grid;
+  gap:18px;
+}
+.profile-timeline::before{
+  content:"";
+  position:absolute;
+  top:24px;
+  bottom:24px;
+  left:196px;
+  width:1px;
+  background:rgba(0,0,0,.12);
+}
+.profile-role{
+  position:relative;
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  gap:54px;
+  padding:28px 32px 28px 0;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:26px;
+  background:rgba(255,255,255,.76);
+  box-shadow:0 14px 38px rgba(14,32,53,.055);
+}
+.profile-role::before{
+  content:"";
+  position:absolute;
+  top:43px;
+  left:190px;
+  width:13px;
+  height:13px;
+  border:4px solid #f4f5f7;
+  border-radius:50%;
+  background:var(--accent);
+}
+.profile-role-meta{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  padding-left:28px;
+}
+.profile-role-meta time{
+  color:var(--accent);
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.profile-role-meta strong{
+  font-size:1.08rem;
+}
+.profile-role-body h3{
+  margin:0 0 12px;
+  font-size:clamp(1.25rem,2.2vw,1.75rem);
+}
+.profile-role-body p{
+  max-width:820px;
+  color:#49494e;
+  line-height:1.65;
+}
+.profile-role-de{
+  margin-top:10px;
+  color:#6a6a70 !important;
+  font-size:.94rem;
+}
+.profile-source-link{
+  display:inline-block;
+  margin-top:16px;
+  color:var(--accent);
+  font-size:.88rem;
+  font-weight:700;
+}
+.profile-verification-note{
+  max-width:850px;
+  margin:24px 0 0 224px;
+  color:var(--muted);
+  font-size:.84rem;
+  line-height:1.55;
+}
 .profile-layout-de{
   grid-template-columns:minmax(0,1fr);
 }
@@ -462,6 +598,7 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   .profile-hero,
   .profile-layout,
   .profile-award,
+  .profile-experience-head,
   .profile-sources-head{
     grid-template-columns:1fr;
   }
@@ -493,6 +630,27 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   .profile-sources-head p{
     justify-self:start;
   }
+  .profile-experience-de{
+    margin-left:0;
+  }
+  .profile-timeline::before{
+    left:24px;
+  }
+  .profile-role{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:26px 24px 26px 48px;
+  }
+  .profile-role::before{
+    top:34px;
+    left:18px;
+  }
+  .profile-role-meta{
+    padding-left:0;
+  }
+  .profile-verification-note{
+    margin-left:48px;
+  }
 }
 @media (max-width:620px){
   .profile-hero{
@@ -511,6 +669,21 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   .profile-card,
   .profile-award{
     border-radius:24px;
+  }
+  .profile-experience{
+    padding-top:64px;
+  }
+  .profile-experience-de{
+    padding:24px;
+  }
+  .profile-role{
+    padding-right:20px;
+  }
+  .profile-award-links,
+  .profile-role-links{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:0;
   }
   .profile-sources a{
     grid-template-columns:1fr;
