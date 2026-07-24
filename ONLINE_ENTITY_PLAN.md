@@ -13,7 +13,7 @@ The implementation must remain factual and transparent. It should read like a re
 - Add `ProfilePage` and `Person` JSON-LD matching the visible page.
 - Use `sameAs` only for profiles that represent Dario Neuenschwander directly.
 - Cite primary and independent sources for achievements and affiliations.
-- Link the founder's name naturally from the DynoForce home and About pages.
+- Keep the profile out of the visible DynoForce navigation and normal visitor journey. Discovery relies on the direct URL, XML sitemap and external search.
 - Add the profile to the XML sitemap and keep crawling permitted in `robots.txt`.
 
 ## Phase 2 — Profile consistency
@@ -26,7 +26,7 @@ The implementation must remain factual and transparent. It should read like a re
 
 ## Phase 3 — External properties
 
-- Ask Tron Helicopters to link Dario Neuenschwander's name from its About page to the canonical DynoForce profile.
+- Keep external references factual and avoid coordinated links that would appear promotional.
 - Update GitHub and other official profiles with the canonical profile URL where appropriate.
 - Review Wikidata eligibility and sources. Create or amend an item only if the community's notability and sourcing requirements are met.
 - Do not repeatedly recreate rejected Wikidata items or use multiple accounts.

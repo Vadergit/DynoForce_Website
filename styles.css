@@ -231,21 +231,19 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   padding-top:72px;
   padding-bottom:72px;
 }
-.profile-monogram{
+.profile-portrait{
   aspect-ratio:1;
-  display:flex;
-  align-items:flex-end;
-  padding:clamp(24px,4vw,52px);
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 68% 28%,rgba(255,255,255,.18),transparent 24%),
-    linear-gradient(145deg,#11151b 0%,#2d3c50 55%,#0071e3 140%);
-  color:#fff;
+  margin:0;
+  overflow:hidden;
+  border-radius:40px;
+  background:#dfe4ea;
   box-shadow:0 30px 80px rgba(14,32,53,.2);
-  font-size:clamp(3.5rem,8vw,7rem);
-  font-weight:700;
-  line-height:.8;
-  letter-spacing:-.08em;
+}
+.profile-portrait img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 36%;
 }
 .profile-intro h1{
   max-width:10ch;
@@ -358,6 +356,20 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   background:#10141a;
   color:#fff;
 }
+.profile-award + .profile-award{
+  margin-top:28px;
+}
+.profile-award-secondary{
+  background:linear-gradient(145deg,#e9edf2 0%,#dce4ed 100%);
+  color:var(--text);
+}
+.profile-award-secondary .profile-award-label,
+.profile-award-secondary p{
+  color:#59616b;
+}
+.profile-award-secondary .link-arrow{
+  color:var(--accent);
+}
 .profile-award-year{
   font-size:clamp(4.5rem,10vw,9rem);
   font-weight:700;
@@ -442,7 +454,7 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
   .profile-hero{
     min-height:auto;
   }
-  .profile-monogram{
+  .profile-portrait{
     width:min(360px,72vw);
   }
   .profile-sources-head p{
