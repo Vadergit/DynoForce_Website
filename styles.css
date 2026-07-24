@@ -218,6 +218,257 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
 }
 
 
+/* Dario Neuenschwander profile */
+.profile-page{
+  overflow:hidden;
+}
+.profile-hero{
+  display:grid;
+  grid-template-columns:minmax(220px,.55fr) minmax(0,1.45fr);
+  gap:clamp(40px,7vw,100px);
+  align-items:center;
+  min-height:calc(100vh - var(--nav-h));
+  padding-top:72px;
+  padding-bottom:72px;
+}
+.profile-monogram{
+  aspect-ratio:1;
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(24px,4vw,52px);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 68% 28%,rgba(255,255,255,.18),transparent 24%),
+    linear-gradient(145deg,#11151b 0%,#2d3c50 55%,#0071e3 140%);
+  color:#fff;
+  box-shadow:0 30px 80px rgba(14,32,53,.2);
+  font-size:clamp(3.5rem,8vw,7rem);
+  font-weight:700;
+  line-height:.8;
+  letter-spacing:-.08em;
+}
+.profile-intro h1{
+  max-width:10ch;
+  margin:0 0 28px;
+  text-align:left;
+  font-size:clamp(4rem,9vw,8.4rem);
+}
+.profile-deck{
+  max-width:800px;
+  color:var(--muted);
+  font-size:clamp(1.2rem,2.3vw,1.65rem);
+  line-height:1.45;
+  letter-spacing:-.018em;
+}
+.profile-facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  list-style:none;
+  margin:30px 0 0;
+  padding:0;
+}
+.profile-facts li{
+  padding:10px 14px;
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:999px;
+  background:rgba(255,255,255,.7);
+  color:#454549;
+  font-size:.92rem;
+}
+.profile-facts a:hover,
+.profile-facts a:focus-visible{
+  color:var(--accent);
+}
+.profile-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);
+  gap:clamp(48px,8vw,112px);
+  align-items:start;
+}
+.profile-main h2{
+  max-width:12ch;
+}
+.profile-main p{
+  max-width:760px;
+  color:#48484d;
+  font-size:clamp(1.08rem,1.8vw,1.28rem);
+  line-height:1.68;
+}
+.profile-main p + p{
+  margin-top:22px;
+}
+.profile-aside{
+  padding:30px 0;
+  border-top:1px solid rgba(0,0,0,.12);
+  border-bottom:1px solid rgba(0,0,0,.12);
+}
+.profile-aside-label,
+.profile-card-kicker{
+  color:var(--muted);
+  font-size:.84rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.profile-aside ul{
+  display:grid;
+  gap:12px;
+  list-style:none;
+  margin:22px 0 0;
+  padding:0;
+  font-size:1.04rem;
+}
+.profile-projects .section-head h2{
+  max-width:14ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+.profile-card{
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding:clamp(30px,4vw,52px);
+  border-radius:36px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.05);
+  box-shadow:var(--shadow-card);
+}
+.profile-card h3{
+  margin:16px 0 18px;
+  font-size:clamp(2rem,4vw,3.4rem);
+}
+.profile-card p{
+  max-width:54ch;
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.65;
+}
+.profile-card .link-arrow{
+  margin-top:auto;
+  padding-top:28px;
+}
+.profile-award{
+  display:grid;
+  grid-template-columns:.62fr 1.38fr;
+  gap:clamp(36px,7vw,96px);
+  padding:clamp(34px,6vw,76px);
+  border-radius:44px;
+  background:#10141a;
+  color:#fff;
+}
+.profile-award-year{
+  font-size:clamp(4.5rem,10vw,9rem);
+  font-weight:700;
+  line-height:.8;
+  letter-spacing:-.07em;
+}
+.profile-award-label{
+  max-width:18ch;
+  margin-top:24px;
+  color:#aab2bd;
+  font-size:1rem;
+}
+.profile-award h2{
+  max-width:10ch;
+}
+.profile-award p{
+  max-width:670px;
+  margin-bottom:24px;
+  color:#c5cad1;
+  font-size:clamp(1.05rem,1.7vw,1.2rem);
+  line-height:1.65;
+}
+.profile-award .link-arrow{
+  color:#76b9ff;
+}
+.profile-layout-de{
+  grid-template-columns:minmax(0,1fr);
+}
+.profile-layout-de .profile-main{
+  max-width:920px;
+  margin:0 auto;
+  text-align:center;
+}
+.profile-layout-de .profile-main h2,
+.profile-layout-de .profile-main p{
+  max-width:none;
+}
+.profile-sources-head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:end;
+  margin-bottom:44px;
+}
+.profile-sources-head p{
+  max-width:52ch;
+  justify-self:end;
+  color:var(--muted);
+  font-size:1.05rem;
+  line-height:1.6;
+}
+.profile-sources{
+  border-top:1px solid rgba(0,0,0,.1);
+}
+.profile-sources a{
+  display:grid;
+  grid-template-columns:minmax(210px,.7fr) minmax(0,1.3fr);
+  gap:28px;
+  align-items:center;
+  padding:22px 0;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+.profile-sources a span{
+  color:var(--muted);
+  font-size:.92rem;
+}
+.profile-sources a strong{
+  font-size:1.05rem;
+  font-weight:600;
+}
+.profile-sources a:hover strong,
+.profile-sources a:focus-visible strong{
+  color:var(--accent);
+}
+@media (max-width:900px){
+  .profile-hero,
+  .profile-layout,
+  .profile-award,
+  .profile-sources-head{
+    grid-template-columns:1fr;
+  }
+  .profile-hero{
+    min-height:auto;
+  }
+  .profile-monogram{
+    width:min(360px,72vw);
+  }
+  .profile-sources-head p{
+    justify-self:start;
+  }
+}
+@media (max-width:620px){
+  .profile-hero{
+    gap:40px;
+    padding-top:52px;
+    padding-bottom:42px;
+  }
+  .profile-intro h1{
+    font-size:clamp(3.6rem,19vw,5.2rem);
+  }
+  .profile-card,
+  .profile-award{
+    border-radius:24px;
+  }
+  .profile-sources a{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+}
+
+
 /* Bildzentrierung */
 .hero-frame,
 .product-card .image,
