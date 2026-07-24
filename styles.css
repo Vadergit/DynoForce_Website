@@ -498,7 +498,9 @@ input:focus,textarea:focus{border-color:rgba(0,113,227,.4);box-shadow:0 0 0 4px 
     padding-bottom:42px;
   }
   .profile-intro h1{
-    font-size:clamp(3.6rem,19vw,5.2rem);
+    max-width:100%;
+    font-size:clamp(2.55rem,12.7vw,3.25rem);
+    overflow-wrap:anywhere;
   }
   .profile-facts{
     grid-template-columns:1fr;
