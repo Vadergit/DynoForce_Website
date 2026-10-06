@@ -1653,6 +1653,37 @@ h3,
 .faq-list{
   display:grid;
 }
+.faq-group + .faq-group{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+.faq-group-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 4px 6px;
+}
+.faq-group-head h3{
+  font-size:1rem;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  font-weight:700;
+  color:var(--text);
+}
+.faq-group-kicker{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:28px;
+  height:28px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#eef5fc;
+  color:var(--accent);
+  font-size:.78rem;
+  font-weight:700;
+}
 .faq-item{
   border-bottom:1px solid rgba(0,0,0,.07);
 }
