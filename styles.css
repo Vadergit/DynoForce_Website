@@ -1152,26 +1152,52 @@ h3,
   height: auto !important;
 }
 
-.product-demo-video {
+.video-section {
+  padding-block: clamp(32px, 5vw, 64px);
+}
+
+.video-section .section-head {
+  margin-bottom: 28px;
+}
+
+.video-section h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.video-frame {
+  width: 100%;
+  max-width: 560px;
+  max-width: min(560px, 74svh);
+  min-width: 0;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: clamp(16px, 3vw, 24px);
+  background: #000;
+  isolation: isolate;
+}
+
+.video-frame--portrait {
+  max-width: 340px;
+  max-width: min(340px, 39.375svh);
+}
+
+.video-frame video {
   display: block;
   width: 100%;
-  max-width: 640px;
+  max-width: 100%;
+  min-width: 0;
   height: auto;
+  object-fit: contain;
+}
+
+.product-demo-video {
   aspect-ratio: 1;
-  margin: 0 auto;
-  border-radius: 24px;
-  background: #000;
 }
 
 .app-demo-video {
-  display: block;
-  width: 100%;
-  max-width: 380px;
-  height: auto;
   aspect-ratio: 9 / 16;
-  margin: 0 auto;
-  border-radius: 24px;
-  background: #000;
 }
 
 .app-core-screen {

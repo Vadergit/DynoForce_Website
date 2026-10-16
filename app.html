@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DynoForce App — Live-Feedback, Training, Games und Auswertung</title>
   <meta name="description" content="Die DynoForce App für iOS, Android und Web verbindet Live-Feedback, strukturierte Trainingsabläufe, Games und langfristige Auswertung in einer Plattform." />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261016-responsive-video" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="shortcut icon" href="favicon.png" type="image/png" />
 </head>
@@ -86,24 +86,29 @@
   </div>
 </section>
 
-<section class="section container">
+<section class="section container video-section" aria-labelledby="app-video-title">
   <div class="section-head">
-    <h2>DynoGrip – Level up.</h2>
+    <h2 id="app-video-title">DynoGrip – Level up.</h2>
     <p>Erlebe DynoGrip und die App in Aktion.</p>
   </div>
-  <video
-    class="app-demo-video"
-    controls
-    loop
-    playsinline
-    preload="none"
-    poster="images/dynogrip-level-up-poster.jpg"
-    aria-label="DynoGrip – Level up: Video mit Spielton"
-  >
-    <source src="videos/dynogrip-level-up.mp4" type="video/mp4" />
-    Dein Browser unterstützt die Videowiedergabe nicht.
-    <a href="videos/dynogrip-level-up.mp4">Video herunterladen</a>
-  </video>
+  <div class="video-frame video-frame--portrait">
+    <video
+      class="app-demo-video"
+      width="1080"
+      height="1920"
+      style="width:100%;max-width:100%;height:auto"
+      controls
+      loop
+      playsinline
+      preload="none"
+      poster="images/dynogrip-level-up-poster.jpg"
+      aria-label="DynoGrip – Level up: Video mit Spielton"
+    >
+      <source src="videos/dynogrip-level-up.mp4" type="video/mp4" />
+      Dein Browser unterstützt die Videowiedergabe nicht.
+      <a href="videos/dynogrip-level-up.mp4">Video herunterladen</a>
+    </video>
+  </div>
 </section>
 
 <section class="section container">
