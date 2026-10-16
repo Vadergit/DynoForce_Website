@@ -1174,7 +1174,7 @@ h3,
   margin-inline: auto;
   overflow: hidden;
   border-radius: clamp(16px, 3vw, 24px);
-  background: #000;
+  background: transparent;
   isolation: isolate;
 }
 
@@ -1189,6 +1189,9 @@ h3,
   max-width: 100%;
   min-width: 0;
   height: auto;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
   object-fit: contain;
 }
 
